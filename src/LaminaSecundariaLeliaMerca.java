@@ -27,9 +27,12 @@ public class LaminaSecundariaLeliaMerca extends JPanel {
     private GBCConstrains gbc=new GBCConstrains();
     private CrearPanelesImagenes crearPanelesImagenes=new CrearPanelesImagenes();
 
-    JPanel panelProductos1,panelProductos2;
-    JPanel nombreProductos1,nombreProductos2;
-    JPanel desProductos1, desProductos2;
+    private JPanel panelProductos1,panelProductos2;
+    private JPanel nombreProductos1,nombreProductos2;
+    private JPanel desProductos1, desProductos2;
+    private JPanel preciosProductos1, preciosProductos2;
+
+    private LogoLeliaMerca logo ;
 
 
 
@@ -60,16 +63,25 @@ public class LaminaSecundariaLeliaMerca extends JPanel {
     private ImageIcon[] arrayImagenesTexto1={iconCincoJotasTexto,iconJoselitoTexto,iconFuetOmsTexto,iconNegriniTexto};
     private ImageIcon[] arrayImagenesTexto2={iconBeroniaTexto,iconElikaTexto,iconMoetTexto,iconPerrierTexto};
     private String[] arrayNombreProductos1={"Cinco Jotas","Joselito","Casa Oms","Negrini"};
-    private String[] arrayDescripcionProductos1={"<html>Maletín hexagonal con jamón de<br>bellota 100% ibérico</html>",
-                                                 "<html>Selección de embutidos,<br>lomo, chorizo y Salchichón Joselito</html>",
-                                                 "<html>Fuet Casa Oms</html>",
-                                                 "<html>Salchichón con trufa Negrini</html>"};
+    private String[] arrayNombreProductos2={"Beronia","Elika","Moët & Chandon","Perrier Jouet"};
+    private String[] arrayDescripcionProductos1={"<html>Maletín hexagonal con jamón de<br>bellota 100% ibérico.</html>",
+                                                 "<html>Selección de embutidos,<br>lomo, chorizo y Salchichón Joselito.</html>",
+                                                 "<html>Fuet Casa Oms.</html>",
+                                                 "<html>Salchichón con trufa Negrini.</html>"};
+    private String[] arrayDescripcionProductos2={"<html>Estuche vino tinto Beronia Gran<br>Reserva 1978 Rioja.</html>",
+            "<html>Estuche vinos tintos y blanco<br> monovarietales ecológicos.</html>",
+            "<html>Champagne Moët & Chandon Ice<br>Impèrial Mágnum.</html>",
+            "<html>Champagne Blanc de Blancs<br>Perrier Jouet.</html>"};
+
+    private String[] arrayPrecios1={"699.00","129.00","4.45","9.95"};
+    private String[] arrayPrecios2={"179.00","199.00","175.00","92.50"};
 
 
 
     public LaminaSecundariaLeliaMerca(int id){
 
        setLayout(new GridBagLayout());
+       //setBackground(Color.WHITE);
        panelProductos1=new JPanel();
        panelProductos1.setLayout(new GridLayout(1,4));
        panelProductos1=crearPanelesImagenes.CrearImagenes1(arrayImagenes1,arrayImagenesTexto1);
@@ -83,20 +95,38 @@ public class LaminaSecundariaLeliaMerca extends JPanel {
         desProductos1.setLayout(new GridLayout(1,4));
         desProductos1=crearPanelesImagenes.CrearDescripcionProductos(arrayDescripcionProductos1);
 
+        preciosProductos1=new JPanel();
+        preciosProductos1.setLayout(new GridLayout(1,4));
+        preciosProductos1=crearPanelesImagenes.CrearPrecioProductos(arrayPrecios1);
+
+
        panelProductos2=new JPanel();
        panelProductos2.setLayout(new GridLayout(1,4));
        panelProductos2=crearPanelesImagenes.CrearImagenes2(arrayImagenes2,arrayImagenesTexto2);
 
+        nombreProductos2=new JPanel();
+        nombreProductos2.setLayout(new GridLayout(1,4));
+        nombreProductos2=crearPanelesImagenes.CrearNombresProductos(arrayNombreProductos2);
 
+        desProductos2=new JPanel();
+        desProductos2.setLayout(new GridLayout(1,4));
+        desProductos2=crearPanelesImagenes.CrearDescripcionProductos(arrayDescripcionProductos2);
+
+        logo=new LogoLeliaMerca();
 
 
 
        add(panelProductos1,gbc.Constrains(0,0,1,1,1.0,0.0,GridBagConstraints.HORIZONTAL,GridBagConstraints.CENTER,new Insets(5,25,5,5)));
        add(nombreProductos1,gbc.Constrains(0,1,1,1,1.0,0.0,GridBagConstraints.HORIZONTAL,GridBagConstraints.CENTER,new Insets(5,25,5,5)));
        add(desProductos1,gbc.Constrains(0,2,1,1,1.0,0.0,GridBagConstraints.HORIZONTAL,GridBagConstraints.CENTER,new Insets(5,25,5,5)));
-       add(panelProductos2,gbc.Constrains(0,3,1,1,1.0,0.0,GridBagConstraints.HORIZONTAL,GridBagConstraints.CENTER,new Insets(5,25,5,5)));
+        add(preciosProductos1,gbc.Constrains(0,3,1,1,1.0,0.0,GridBagConstraints.HORIZONTAL,GridBagConstraints.CENTER,new Insets(0,25,5,5)));
 
+        add(panelProductos2,gbc.Constrains(0,4,1,1,1.0,0.0,GridBagConstraints.HORIZONTAL,GridBagConstraints.CENTER,new Insets(5,25,5,5)));
 
+        add(nombreProductos2,gbc.Constrains(0,5,1,1,1.0,0.0,GridBagConstraints.HORIZONTAL,GridBagConstraints.CENTER,new Insets(5,25,5,5)));
+        add(desProductos2,gbc.Constrains(0,6,1,1,1.0,0.0,GridBagConstraints.HORIZONTAL,GridBagConstraints.CENTER,new Insets(5,25,5,5)));
+
+        add(logo,gbc.Constrains(1,0,1,1,1.0,0.0,GridBagConstraints.HORIZONTAL,GridBagConstraints.CENTER,new Insets(5,25,5,5)));
     }
 
 

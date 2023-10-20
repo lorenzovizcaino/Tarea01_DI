@@ -84,6 +84,18 @@ public class CrearPanelesImagenes extends JPanel {
         }
         return panel;
     }
+
+    public JPanel CrearPrecioProductos(String[] arrayPrecios) {
+        JPanel panel=new JPanel();
+        panel.setLayout(new GridLayout(1,4));
+        for(int i = 0; i< nombres1.length; i++){
+            nombres1[i]=new JLabel(arrayPrecios[i]);
+            nombres1[i].setHorizontalAlignment(JLabel.LEFT);
+            nombres1[i].setFont(font17);
+            panel.add(nombres1[i]);
+        }
+        return panel;
+    }
 }
 
 
