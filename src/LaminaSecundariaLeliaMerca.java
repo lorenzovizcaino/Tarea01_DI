@@ -27,15 +27,15 @@ public class LaminaSecundariaLeliaMerca extends JPanel {
     private GBCConstrains gbc=new GBCConstrains();
     private CrearPanelesImagenes crearPanelesImagenes=new CrearPanelesImagenes();
 
-    JPanel panelProductos1,panelProductos2,panelProductos3;
-    JPanel desProductos1, desProductos2, desProductos3;
+    JPanel panelProductos1,panelProductos2;
+    JPanel nombreProductos1,nombreProductos2;
+    JPanel desProductos1, desProductos2;
 
 
 
 
 
-    private JLabel labelCincoJotas, labelJoselito,labelFuetOms,labelNegrini;
-    private JLabel descripcionCincoJotas, descripcionJoselito, descripcionFuetOms, descripcionNegrini;
+
 
     private ImageIcon iconCincoJotas=TransformarImagen(cincoJotas);
     private ImageIcon iconCincoJotasTexto=TransformarImagen(cincoJotasTexto);
@@ -59,6 +59,11 @@ public class LaminaSecundariaLeliaMerca extends JPanel {
     private ImageIcon[] arrayImagenes2={iconBeronia,iconElika,iconMoet,iconPerrier};
     private ImageIcon[] arrayImagenesTexto1={iconCincoJotasTexto,iconJoselitoTexto,iconFuetOmsTexto,iconNegriniTexto};
     private ImageIcon[] arrayImagenesTexto2={iconBeroniaTexto,iconElikaTexto,iconMoetTexto,iconPerrierTexto};
+    private String[] arrayNombreProductos1={"Cinco Jotas","Joselito","Casa Oms","Negrini"};
+    private String[] arrayDescripcionProductos1={"<html>Maletín hexagonal con jamón de<br>bellota 100% ibérico</html>",
+                                                 "<html>Selección de embutidos,<br>lomo, chorizo y Salchichón Joselito</html>",
+                                                 "<html>Fuet Casa Oms</html>",
+                                                 "<html>Salchichón con trufa Negrini</html>"};
 
 
 
@@ -67,19 +72,29 @@ public class LaminaSecundariaLeliaMerca extends JPanel {
        setLayout(new GridBagLayout());
        panelProductos1=new JPanel();
        panelProductos1.setLayout(new GridLayout(1,4));
-       panelProductos1=crearPanelesImagenes.Crear1(arrayImagenes1,arrayImagenesTexto1);
+       panelProductos1=crearPanelesImagenes.CrearImagenes1(arrayImagenes1,arrayImagenesTexto1);
+
+
+       nombreProductos1=new JPanel();
+       nombreProductos1.setLayout(new GridLayout(1,4));
+       nombreProductos1=crearPanelesImagenes.CrearNombresProductos(arrayNombreProductos1);
+
+        desProductos1=new JPanel();
+        desProductos1.setLayout(new GridLayout(1,4));
+        desProductos1=crearPanelesImagenes.CrearDescripcionProductos(arrayDescripcionProductos1);
 
        panelProductos2=new JPanel();
        panelProductos2.setLayout(new GridLayout(1,4));
-       panelProductos2=crearPanelesImagenes.Crear2(arrayImagenes2,arrayImagenesTexto2);
-
-       desProductos1=new JPanel();
-       desProductos1.setLayout(new GridLayout(1,4));
-       descripcionCincoJotas=new JLabel("Maletín hexagonal con jamón de bellota 100% ibérico Edición Gourmet Cinco Jotas");
+       panelProductos2=crearPanelesImagenes.CrearImagenes2(arrayImagenes2,arrayImagenesTexto2);
 
 
-       add(panelProductos1,gbc.Constrains(0,0,1,1,1.0,0.0,GridBagConstraints.HORIZONTAL,GridBagConstraints.CENTER,new Insets(5,5,5,5)));
-       add(panelProductos2,gbc.Constrains(0,1,1,1,1.0,0.0,GridBagConstraints.HORIZONTAL,GridBagConstraints.CENTER,new Insets(5,5,5,5)));
+
+
+
+       add(panelProductos1,gbc.Constrains(0,0,1,1,1.0,0.0,GridBagConstraints.HORIZONTAL,GridBagConstraints.CENTER,new Insets(5,25,5,5)));
+       add(nombreProductos1,gbc.Constrains(0,1,1,1,1.0,0.0,GridBagConstraints.HORIZONTAL,GridBagConstraints.CENTER,new Insets(5,25,5,5)));
+       add(desProductos1,gbc.Constrains(0,2,1,1,1.0,0.0,GridBagConstraints.HORIZONTAL,GridBagConstraints.CENTER,new Insets(5,25,5,5)));
+       add(panelProductos2,gbc.Constrains(0,3,1,1,1.0,0.0,GridBagConstraints.HORIZONTAL,GridBagConstraints.CENTER,new Insets(5,25,5,5)));
 
 
     }
