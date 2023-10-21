@@ -26,7 +26,7 @@ public class LaminaPrimariaLeliaMerca extends JPanel {
         labelMiCuenta=new JLabel("M   I       C   U   E   N   T   A");
         labelMiCuenta.setFont(font14);
         labelMiCuenta.setHorizontalAlignment(JLabel.CENTER);
-        logo=new LogoLeliaMerca();
+        logo=new LogoLeliaMerca(1);
 
         labelIniciaSesion=new JLabel("Inicia sesión");
         labelIniciaSesion.setFont(font17);
@@ -99,18 +99,31 @@ public class LaminaPrimariaLeliaMerca extends JPanel {
 
 class LogoLeliaMerca extends JPanel {
     private Image imagen, imagenOriginal;
+    private int id=0;
     File file=new File("image"+File.separator+"logo LeliaMerca.png");
 
+    public LogoLeliaMerca(int id) {
+        this.id=id;
+    }
 
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         setBackground(Color.WHITE);
-        setSize(240,95);
+
         try {
             imagenOriginal= ImageIO.read(file);
-            imagen=imagenOriginal.getScaledInstance(220,75,Image.SCALE_SMOOTH);
+            if(id==1){
+                setSize(240,95);
+                imagen=imagenOriginal.getScaledInstance(220,75,Image.SCALE_SMOOTH);
+            }
+            if(id==2){
+                setSize(360,165);
+                setBackground(new Color(238,238,238));
+                imagen=imagenOriginal.getScaledInstance(350,119,Image.SCALE_SMOOTH);
+            }
+
         } catch (IOException e) {
             System.out.println("Lo siento, la imagen no se ha encontrado");
         }
