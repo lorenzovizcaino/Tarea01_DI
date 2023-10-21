@@ -28,7 +28,7 @@ public class LaminaSecundariaLeliaMerca extends JPanel {
 
     private Font font24 =new Font("Lucida Sans",Font.BOLD,24);
     private Font font19 =new Font("Lucida Sans",Font.BOLD,19);
-    private Font font17 =new Font("Lucida Sans",Font.BOLD,17);
+    private Font font17 =new Font("Monospaced",Font.PLAIN,17);
     private Font font14 =new Font("Lucida Sans",Font.BOLD,14);
     private Font font12 =new Font("Lucida Sans",Font.BOLD,12);
 
@@ -135,7 +135,7 @@ public class LaminaSecundariaLeliaMerca extends JPanel {
 
         comprar2=new JPanel();
         comprar2.setLayout(new GridLayout(1,4));
-        comprar2=crearPanelesImagenes.CrearCompras2(carritoNaranja);
+        comprar2=crearPanelesImagenes.CrearCompras2(carritoNaranja,areaCompras);
 
         logo=new LogoLeliaMerca(2);
 

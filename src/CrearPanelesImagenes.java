@@ -6,6 +6,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 public class CrearPanelesImagenes extends JPanel {
 
@@ -26,6 +27,7 @@ public class CrearPanelesImagenes extends JPanel {
     private String[] arrayPrecios2=new String[4];
     private String[] nombreProductos1=new String[4];
     private String[] nombreProductos2=new String[4];
+    private double total=0.0;
 
 
 
@@ -81,6 +83,7 @@ public class CrearPanelesImagenes extends JPanel {
 
     public JPanel CrearNombresProductos1(String[] arrayNombreProductos) {
         nombreProductos1=PonerEspacios(arrayNombreProductos);
+
         JPanel panel=new JPanel();
         panel.setLayout(new GridLayout(1,4));
         for(int i = 0; i< nombres1.length; i++){
@@ -111,7 +114,7 @@ public class CrearPanelesImagenes extends JPanel {
     }
 
     public JPanel CrearNombresProductos2(String[] arrayNombreProductos) {
-        nombreProductos2=arrayNombreProductos;
+        nombreProductos2=PonerEspacios(arrayNombreProductos);
         JPanel panel=new JPanel();
         panel.setLayout(new GridLayout(1,4));
         for(int i = 0; i< nombres1.length; i++){
@@ -191,11 +194,30 @@ public class CrearPanelesImagenes extends JPanel {
             int finalI = i;
 
             botonCarrito[i].addActionListener(e->{
+                total=0.0;
                 areaCompras.setText("");
 
                 for(int k=0;k<4;k++){
                     if((int)spiner1[k].getValue()>0){
-                        areaCompras.setText(areaCompras.getText()+"\n\t"+spiner1[k].getValue()+" x "+nombreProductos1[k]+Double.parseDouble(arrayPrecios1[k])*(int)spiner1[k].getValue()+"€");
+                        DecimalFormat formato = new DecimalFormat("#,##0.00");
+                        String valorFormateado = formato.format(Double.parseDouble(arrayPrecios1[k])*(int)spiner1[k].getValue());
+                        int anchoTotal = 8;
+                        valorFormateado = String.format("%" + anchoTotal + "s", valorFormateado);
+                        total+=Double.parseDouble(arrayPrecios1[k])*(int)spiner1[k].getValue();
+                        fieldtotal.setText(String.valueOf(total));
+                        areaCompras.setText(areaCompras.getText()+"\n\t"+spiner1[k].getValue()+" x "+nombreProductos1[k]+valorFormateado+"€");
+                    }
+
+                }
+                for(int k=0;k<4;k++){
+                    if((int)spiner2[k].getValue()>0){
+                        DecimalFormat formato = new DecimalFormat("#,##0.00");
+                        String valorFormateado = formato.format(Double.parseDouble(arrayPrecios2[k])*(int)spiner2[k].getValue());
+                        int anchoTotal = 8;
+                        valorFormateado = String.format("%" + anchoTotal + "s", valorFormateado);
+                        total+=Double.parseDouble(arrayPrecios2[k])*(int)spiner2[k].getValue();
+                        fieldtotal.setText(String.valueOf(total));
+                        areaCompras.setText(areaCompras.getText()+"\n\t"+spiner2[k].getValue()+" x "+nombreProductos2[k]+valorFormateado+"€");
                     }
 
                 }
@@ -211,7 +233,7 @@ public class CrearPanelesImagenes extends JPanel {
 
     }
 
-    public JPanel CrearCompras2(File carrito) {
+    public JPanel CrearCompras2(File carrito, TextArea areaCompras) {
         JPanel panel=new JPanel();
 
         panel.setLayout(new GridLayout(1,4));
@@ -239,6 +261,41 @@ public class CrearPanelesImagenes extends JPanel {
             panel2.add(spiner2[i]);
             panel2.add(botonCarrito[i]);
             panel.add(panel2);
+            int finalI = i;
+
+            botonCarrito[i].addActionListener(e->{
+                total=0.0;
+                areaCompras.setText("");
+
+                for(int k=0;k<4;k++){
+                    if((int)spiner1[k].getValue()>0){
+                        DecimalFormat formato = new DecimalFormat("#,##0.00");
+                        String valorFormateado = formato.format(Double.parseDouble(arrayPrecios1[k])*(int)spiner1[k].getValue());
+                        int anchoTotal = 8;
+                        valorFormateado = String.format("%" + anchoTotal + "s", valorFormateado);
+                        total+=Double.parseDouble(arrayPrecios1[k])*(int)spiner1[k].getValue();
+                        fieldtotal.setText(String.valueOf(total));
+                        areaCompras.setText(areaCompras.getText()+"\n\t"+spiner1[k].getValue()+" x "+nombreProductos1[k]+valorFormateado+"€");
+                    }
+
+                }
+                for(int k=0;k<4;k++){
+                    if((int)spiner2[k].getValue()>0){
+                        DecimalFormat formato = new DecimalFormat("#,##0.00");
+                        String valorFormateado = formato.format(Double.parseDouble(arrayPrecios2[k])*(int)spiner2[k].getValue());
+                        int anchoTotal = 8;
+                        valorFormateado = String.format("%" + anchoTotal + "s", valorFormateado);
+                        total+=Double.parseDouble(arrayPrecios2[k])*(int)spiner2[k].getValue();
+                        fieldtotal.setText(String.valueOf(total));
+                        areaCompras.setText(areaCompras.getText()+"\n\t"+spiner2[k].getValue()+" x "+nombreProductos2[k]+valorFormateado+"€");
+                    }
+
+                }
+
+
+
+            });
+
         }
         return panel;
     }
