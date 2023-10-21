@@ -22,6 +22,10 @@ public class CrearPanelesImagenes extends JPanel {
     private Font font17 =new Font("Lucida Sans",Font.BOLD,17);
     private Font font14 =new Font("Lucida Sans",Font.BOLD,14);
     private Font font12 =new Font("Lucida Sans",Font.BOLD,12);
+    private String[] arrayPrecios1 =new String[4];
+    private String[] arrayPrecios2=new String[4];
+    private String[] nombreProductos1=new String[4];
+    private String[] nombreProductos2=new String[4];
 
 
 
@@ -75,7 +79,39 @@ public class CrearPanelesImagenes extends JPanel {
     }
 
 
-    public JPanel CrearNombresProductos(String[] arrayNombreProductos) {
+    public JPanel CrearNombresProductos1(String[] arrayNombreProductos) {
+        nombreProductos1=PonerEspacios(arrayNombreProductos);
+        JPanel panel=new JPanel();
+        panel.setLayout(new GridLayout(1,4));
+        for(int i = 0; i< nombres1.length; i++){
+            nombres1[i]=new JLabel(arrayNombreProductos[i]);
+            nombres1[i].setHorizontalAlignment(JLabel.LEFT);
+            nombres1[i].setFont(font17);
+            panel.add(nombres1[i]);
+        }
+        return panel;
+    }
+
+    private String[] PonerEspacios(String[] arrayNombreProductos) {
+        String []array=new String[arrayNombreProductos.length];
+        int longitud=25;
+        for (int i=0;i<array.length;i++){
+            if(arrayNombreProductos[i].length()<longitud){
+                int espaciosFaltantes = longitud - arrayNombreProductos[i].length();
+                StringBuilder stringBuilder = new StringBuilder(arrayNombreProductos[i]);
+                for (int j = 0; j < espaciosFaltantes; j++) {
+                    stringBuilder.append(".");
+                }
+                array[i] = stringBuilder.toString();
+                System.out.println(array[i]);
+
+            }
+        }
+        return array;
+    }
+
+    public JPanel CrearNombresProductos2(String[] arrayNombreProductos) {
+        nombreProductos2=arrayNombreProductos;
         JPanel panel=new JPanel();
         panel.setLayout(new GridLayout(1,4));
         for(int i = 0; i< nombres1.length; i++){
@@ -99,7 +135,21 @@ public class CrearPanelesImagenes extends JPanel {
         return panel;
     }
 
-    public JPanel CrearPrecioProductos(String[] arrayPrecios) {
+    public JPanel CrearPrecioProductos1(String[] arrayPrecios) {
+        arrayPrecios1 =arrayPrecios;
+        JPanel panel=new JPanel();
+        panel.setLayout(new GridLayout(1,4));
+        for(int i = 0; i< nombres1.length; i++){
+            nombres1[i]=new JLabel(arrayPrecios[i]+" €");
+            nombres1[i].setHorizontalAlignment(JLabel.LEFT);
+            nombres1[i].setFont(font17);
+            panel.add(nombres1[i]);
+        }
+        return panel;
+    }
+
+    public JPanel CrearPrecioProductos2(String[] arrayPrecios) {
+        arrayPrecios2 =arrayPrecios;
         JPanel panel=new JPanel();
         panel.setLayout(new GridLayout(1,4));
         for(int i = 0; i< nombres1.length; i++){
@@ -138,8 +188,20 @@ public class CrearPanelesImagenes extends JPanel {
             panel2.add(spiner1[i]);
             panel2.add(botonCarrito[i]);
             panel.add(panel2);
+            int finalI = i;
+
             botonCarrito[i].addActionListener(e->{
-                areaCompras.setText(areaCompras.getText()+"\nHOLA");
+                areaCompras.setText("");
+
+                for(int k=0;k<4;k++){
+                    if((int)spiner1[k].getValue()>0){
+                        areaCompras.setText(areaCompras.getText()+"\n\t"+spiner1[k].getValue()+" x "+nombreProductos1[k]+Double.parseDouble(arrayPrecios1[k])*(int)spiner1[k].getValue()+"€");
+                    }
+
+                }
+
+
+
             });
 
         }

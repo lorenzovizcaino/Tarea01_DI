@@ -26,6 +26,12 @@ public class LaminaSecundariaLeliaMerca extends JPanel {
     private File perrierJouetTexto=new File("image"+File.separator+"perrierJouetTexto.png");
     private File carritoNaranja=new File("image"+File.separator+"carritoNaranjaRedimensionado.png");
 
+    private Font font24 =new Font("Lucida Sans",Font.BOLD,24);
+    private Font font19 =new Font("Lucida Sans",Font.BOLD,19);
+    private Font font17 =new Font("Lucida Sans",Font.BOLD,17);
+    private Font font14 =new Font("Lucida Sans",Font.BOLD,14);
+    private Font font12 =new Font("Lucida Sans",Font.BOLD,12);
+
     private GBCConstrains gbc=new GBCConstrains();
     private CrearPanelesImagenes crearPanelesImagenes=new CrearPanelesImagenes();
 
@@ -97,7 +103,7 @@ public class LaminaSecundariaLeliaMerca extends JPanel {
 
        nombreProductos1=new JPanel();
        nombreProductos1.setLayout(new GridLayout(1,4));
-       nombreProductos1=crearPanelesImagenes.CrearNombresProductos(arrayNombreProductos1);
+       nombreProductos1=crearPanelesImagenes.CrearNombresProductos1(arrayNombreProductos1);
 
         desProductos1=new JPanel();
         desProductos1.setLayout(new GridLayout(1,4));
@@ -105,7 +111,7 @@ public class LaminaSecundariaLeliaMerca extends JPanel {
 
         preciosProductos1=new JPanel();
         preciosProductos1.setLayout(new GridLayout(1,4));
-        preciosProductos1=crearPanelesImagenes.CrearPrecioProductos(arrayPrecios1);
+        preciosProductos1=crearPanelesImagenes.CrearPrecioProductos1(arrayPrecios1);
 
         comprar1=new JPanel();
         comprar1.setLayout(new GridLayout(1,4));
@@ -117,7 +123,7 @@ public class LaminaSecundariaLeliaMerca extends JPanel {
 
         nombreProductos2=new JPanel();
         nombreProductos2.setLayout(new GridLayout(1,4));
-        nombreProductos2=crearPanelesImagenes.CrearNombresProductos(arrayNombreProductos2);
+        nombreProductos2=crearPanelesImagenes.CrearNombresProductos2(arrayNombreProductos2);
 
         desProductos2=new JPanel();
         desProductos2.setLayout(new GridLayout(1,4));
@@ -125,7 +131,7 @@ public class LaminaSecundariaLeliaMerca extends JPanel {
 
         preciosProductos2=new JPanel();
         preciosProductos2.setLayout(new GridLayout(1,4));
-        preciosProductos2=crearPanelesImagenes.CrearPrecioProductos(arrayPrecios2);
+        preciosProductos2=crearPanelesImagenes.CrearPrecioProductos2(arrayPrecios2);
 
         comprar2=new JPanel();
         comprar2.setLayout(new GridLayout(1,4));
@@ -133,7 +139,7 @@ public class LaminaSecundariaLeliaMerca extends JPanel {
 
         logo=new LogoLeliaMerca(2);
 
-
+        areaCompras.setFont(font17);
 
         totalCompra=new JPanel();
         totalCompra.setLayout(new FlowLayout());
