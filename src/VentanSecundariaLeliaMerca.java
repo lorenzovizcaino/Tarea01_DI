@@ -24,6 +24,11 @@ public class VentanSecundariaLeliaMerca extends JFrame {
         }
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         LaminaSecundariaLeliaMerca laminaSecundariaLeliaMerca=new LaminaSecundariaLeliaMerca(id);
+        laminaSecundariaLeliaMerca.cancelar.addActionListener(e->{
+            int respuesta=JOptionPane.showConfirmDialog(this,"Si pulsa YES saldra y se eliminara su compra, ¿Seguro que quiere SALIR?","CANCELAR",JOptionPane.YES_NO_OPTION);
+
+            if (respuesta==JOptionPane.YES_OPTION) this.dispose();
+        });
         add(laminaSecundariaLeliaMerca);
         setVisible(true);
     }

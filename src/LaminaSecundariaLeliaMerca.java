@@ -5,6 +5,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 public class LaminaSecundariaLeliaMerca extends JPanel {
 
@@ -86,7 +87,29 @@ public class LaminaSecundariaLeliaMerca extends JPanel {
             "<html>Champagne Blanc de Blancs<br>Perrier Jouet.</html>"};
 
     private String[] arrayPrecios1={"699.00","129.00","4.45","9.95"};
+    private String[] arrayPrecios1Club=CalcularPrecios(arrayPrecios1,0.10);
+    private String[] arrayPrecios1Premium=CalcularPrecios(arrayPrecios1,0.15);
+
+
+
     private String[] arrayPrecios2={"179.00","199.00","175.00","92.50"};
+    private String[] arrayPrecios2Club=CalcularPrecios(arrayPrecios2,0.10);
+    private String[] arrayPrecios2Premium=CalcularPrecios(arrayPrecios2,0.15);
+
+    private String[] CalcularPrecios(String[] arrayPrec, double porcentaje) {
+        String[] devolver=new String[4];
+        double[] precios=new double[4];
+        DecimalFormat formato = new DecimalFormat("#,##0.00");
+        double precio;
+        for(int i=0;i<precios.length;i++){
+            precio= Double.parseDouble(arrayPrec[i]);
+            precios[i]= precio-(precio*porcentaje);
+            String numeroRedondeado=formato.format((precios[i]));
+            devolver[i]= numeroRedondeado;
+        }
+        return devolver;
+    }
+    protected JButton cancelar;
 
 
 
@@ -170,6 +193,8 @@ public class LaminaSecundariaLeliaMerca extends JPanel {
         add(areaCompras,gbc.Constrains(1,1,1,5,0.0,0.0,GridBagConstraints.BOTH,GridBagConstraints.CENTER,new Insets(5,45,5,140)));
         add(totalCompra,gbc.Constrains(1,6,1,1,0.0,0.0,GridBagConstraints.HORIZONTAL,GridBagConstraints.CENTER,new Insets(5,40,5,5)));
         add(botonesFinales,gbc.Constrains(1,8,1,2,0.0,0.0,GridBagConstraints.BOTH,GridBagConstraints.CENTER,new Insets(5,40,5,140)));
+
+        this.cancelar=crearPanelesImagenes.cancelar;
 
 
     }

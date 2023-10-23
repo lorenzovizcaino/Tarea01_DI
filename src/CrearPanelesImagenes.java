@@ -17,7 +17,7 @@ public class CrearPanelesImagenes extends JPanel {
     private JSpinner [] spiner2;
     private JLabel etiquetaTotalCompra;
     private TextField fieldtotal;
-    private JButton comprar, cancelar;
+    protected JButton comprar, cancelar;
     private Font font24 =new Font("Lucida Sans",Font.BOLD,24);
     private Font font19 =new Font("Lucida Sans",Font.BOLD,19);
     private Font font17 =new Font("Lucida Sans",Font.BOLD,17);
@@ -28,6 +28,8 @@ public class CrearPanelesImagenes extends JPanel {
     private String[] nombreProductos1=new String[4];
     private String[] nombreProductos2=new String[4];
     private double total=0.0;
+    private String  valorFormateadoTotal;
+
 
 
 
@@ -184,7 +186,7 @@ public class CrearPanelesImagenes extends JPanel {
             JPanel panel2=new JPanel();
             panel2.setLayout(layout);
 
-            spiner1[i]=new JSpinner(new SpinnerNumberModel(0,0,10,1));
+            spiner1[i]=new JSpinner(new SpinnerNumberModel(0,0,9,1));
             spiner1[i].setPreferredSize(new Dimension(50,40));
             spiner1[i].setFont(font17);
             botonCarrito[i]=new JButton(carro);
@@ -204,7 +206,9 @@ public class CrearPanelesImagenes extends JPanel {
                         int anchoTotal = 8;
                         valorFormateado = String.format("%" + anchoTotal + "s", valorFormateado);
                         total+=Double.parseDouble(arrayPrecios1[k])*(int)spiner1[k].getValue();
-                        fieldtotal.setText(String.valueOf(total));
+                        valorFormateadoTotal=formato.format(total);
+                        valorFormateadoTotal = String.format("%" + anchoTotal + "s", valorFormateadoTotal);
+                        fieldtotal.setText(valorFormateadoTotal+"€");
                         areaCompras.setText(areaCompras.getText()+"\n\t"+spiner1[k].getValue()+" x "+nombreProductos1[k]+valorFormateado+"€");
                     }
 
@@ -216,7 +220,9 @@ public class CrearPanelesImagenes extends JPanel {
                         int anchoTotal = 8;
                         valorFormateado = String.format("%" + anchoTotal + "s", valorFormateado);
                         total+=Double.parseDouble(arrayPrecios2[k])*(int)spiner2[k].getValue();
-                        fieldtotal.setText(String.valueOf(total));
+                        valorFormateadoTotal=formato.format(total);
+                        valorFormateadoTotal = String.format("%" + anchoTotal + "s", valorFormateadoTotal);
+                        fieldtotal.setText(valorFormateadoTotal+"€");
                         areaCompras.setText(areaCompras.getText()+"\n\t"+spiner2[k].getValue()+" x "+nombreProductos2[k]+valorFormateado+"€");
                     }
 
@@ -253,7 +259,7 @@ public class CrearPanelesImagenes extends JPanel {
             JPanel panel2=new JPanel();
             panel2.setLayout(layout);
 
-            spiner2[i]=new JSpinner(new SpinnerNumberModel(0,0,10,1));
+            spiner2[i]=new JSpinner(new SpinnerNumberModel(0,0,9,1));
             spiner2[i].setPreferredSize(new Dimension(50,40));
             spiner2[i].setFont(font17);
 
@@ -274,7 +280,9 @@ public class CrearPanelesImagenes extends JPanel {
                         int anchoTotal = 8;
                         valorFormateado = String.format("%" + anchoTotal + "s", valorFormateado);
                         total+=Double.parseDouble(arrayPrecios1[k])*(int)spiner1[k].getValue();
-                        fieldtotal.setText(String.valueOf(total));
+                        valorFormateadoTotal=formato.format(total);
+                        valorFormateadoTotal = String.format("%" + anchoTotal + "s", valorFormateadoTotal);
+                        fieldtotal.setText(valorFormateadoTotal+"€");
                         areaCompras.setText(areaCompras.getText()+"\n\t"+spiner1[k].getValue()+" x "+nombreProductos1[k]+valorFormateado+"€");
                     }
 
@@ -283,10 +291,13 @@ public class CrearPanelesImagenes extends JPanel {
                     if((int)spiner2[k].getValue()>0){
                         DecimalFormat formato = new DecimalFormat("#,##0.00");
                         String valorFormateado = formato.format(Double.parseDouble(arrayPrecios2[k])*(int)spiner2[k].getValue());
+
                         int anchoTotal = 8;
                         valorFormateado = String.format("%" + anchoTotal + "s", valorFormateado);
                         total+=Double.parseDouble(arrayPrecios2[k])*(int)spiner2[k].getValue();
-                        fieldtotal.setText(String.valueOf(total));
+                        valorFormateadoTotal=formato.format(total);
+                        valorFormateadoTotal = String.format("%" + anchoTotal + "s", valorFormateadoTotal);
+                        fieldtotal.setText(valorFormateadoTotal+"€");
                         areaCompras.setText(areaCompras.getText()+"\n\t"+spiner2[k].getValue()+" x "+nombreProductos2[k]+valorFormateado+"€");
                     }
 
@@ -331,6 +342,9 @@ public class CrearPanelesImagenes extends JPanel {
         cancelar.setBackground(new Color(212,175,55));
         cancelar.setForeground(Color.WHITE);
         cancelar.setBorder(new LineBorder(new Color(73,134,52),2));
+        comprar.addActionListener(e->{
+            JOptionPane.showMessageDialog(this,"El Valor total de su compra es: "+valorFormateadoTotal+" €","Finalizando Compra",JOptionPane.INFORMATION_MESSAGE);
+        });
         panel.add(comprar);
         panel.add(cancelar);
         return panel;
