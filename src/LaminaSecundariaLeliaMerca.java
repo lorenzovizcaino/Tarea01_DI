@@ -1,8 +1,6 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
@@ -26,6 +24,8 @@ public class LaminaSecundariaLeliaMerca extends JPanel {
     private File perrierJouet=new File("image"+File.separator+"perrierJouet.png");
     private File perrierJouetTexto=new File("image"+File.separator+"perrierJouetTexto.png");
     private File carritoNaranja=new File("image"+File.separator+"carritoNaranjaRedimensionado.png");
+    private File carritoVerde=new File("image"+File.separator+"carritoVerdeRedimensionado.png");
+    private File carritoDorado=new File("image"+File.separator+"carritoDoradoRedimensionado.png");
 
     private Font font24 =new Font("Lucida Sans",Font.BOLD,24);
     private Font font19 =new Font("Lucida Sans",Font.BOLD,19);
@@ -48,6 +48,9 @@ public class LaminaSecundariaLeliaMerca extends JPanel {
 
     private LogoLeliaMerca logo ;
 
+    Color dorado=new Color(212,175,55);
+    Color naranja=new Color(255,127,0);
+    Color verde=new Color(73,134,52);
 
 
 
@@ -87,14 +90,18 @@ public class LaminaSecundariaLeliaMerca extends JPanel {
             "<html>Champagne Blanc de Blancs<br>Perrier Jouet.</html>"};
 
     private String[] arrayPrecios1={"699.00","129.00","4.45","9.95"};
-    private String[] arrayPrecios1Club=CalcularPrecios(arrayPrecios1,0.10);
-    private String[] arrayPrecios1Premium=CalcularPrecios(arrayPrecios1,0.15);
+    private String[] arrayPrecios1Club={"629.10","116.10","4.00","8.95"};
+    private String[] arrayPrecios1Premium={"594.15","109.65","3.80","8.45"};
+//   private String[] arrayPrecios1Club=CalcularPrecios(arrayPrecios1,0.10);
+//    private String[] arrayPrecios1Premium=CalcularPrecios(arrayPrecios1,0.15);
 
 
 
     private String[] arrayPrecios2={"179.00","199.00","175.00","92.50"};
-    private String[] arrayPrecios2Club=CalcularPrecios(arrayPrecios2,0.10);
-    private String[] arrayPrecios2Premium=CalcularPrecios(arrayPrecios2,0.15);
+    private String[] arrayPrecios2Club={"161.10","179.10","157.50","83.25"};
+    private String[] arrayPrecios2Premium={"152.15","169.15","148.75","78.60"};
+//    private String[] arrayPrecios2Club=CalcularPrecios(arrayPrecios2,0.10);
+//    private String[] arrayPrecios2Premium=CalcularPrecios(arrayPrecios2,0.15);
 
     private String[] CalcularPrecios(String[] arrayPrec, double porcentaje) {
         String[] devolver=new String[4];
@@ -106,6 +113,8 @@ public class LaminaSecundariaLeliaMerca extends JPanel {
             precios[i]= precio-(precio*porcentaje);
             String numeroRedondeado=formato.format((precios[i]));
             devolver[i]= numeroRedondeado;
+            System.out.println(numeroRedondeado);
+
         }
         return devolver;
     }
@@ -117,48 +126,71 @@ public class LaminaSecundariaLeliaMerca extends JPanel {
 
     public LaminaSecundariaLeliaMerca(int id){
 
-       setLayout(new GridBagLayout());
-       //setBackground(Color.WHITE);
-       panelProductos1=new JPanel();
-       panelProductos1.setLayout(new GridLayout(1,4));
-       panelProductos1=crearPanelesImagenes.CrearImagenes1(arrayImagenes1,arrayImagenesTexto1);
 
+        setLayout(new GridBagLayout());
+        //setBackground(Color.WHITE);
+        panelProductos1=new JPanel();
+        panelProductos1.setLayout(new GridLayout(1,4));
 
-       nombreProductos1=new JPanel();
-       nombreProductos1.setLayout(new GridLayout(1,4));
-       nombreProductos1=crearPanelesImagenes.CrearNombresProductos1(arrayNombreProductos1);
+        nombreProductos1=new JPanel();
+        nombreProductos1.setLayout(new GridLayout(1,4));
 
         desProductos1=new JPanel();
         desProductos1.setLayout(new GridLayout(1,4));
-        desProductos1=crearPanelesImagenes.CrearDescripcionProductos(arrayDescripcionProductos1);
 
         preciosProductos1=new JPanel();
         preciosProductos1.setLayout(new GridLayout(1,4));
-        preciosProductos1=crearPanelesImagenes.CrearPrecioProductos1(arrayPrecios1);
 
         comprar1=new JPanel();
         comprar1.setLayout(new GridLayout(1,4));
-        comprar1=crearPanelesImagenes.CrearCompras1(carritoNaranja,areaCompras);
 
-       panelProductos2=new JPanel();
-       panelProductos2.setLayout(new GridLayout(1,4));
-       panelProductos2=crearPanelesImagenes.CrearImagenes2(arrayImagenes2,arrayImagenesTexto2);
+
+
+        panelProductos2=new JPanel();
+        panelProductos2.setLayout(new GridLayout(1,4));
 
         nombreProductos2=new JPanel();
         nombreProductos2.setLayout(new GridLayout(1,4));
-        nombreProductos2=crearPanelesImagenes.CrearNombresProductos2(arrayNombreProductos2);
 
         desProductos2=new JPanel();
         desProductos2.setLayout(new GridLayout(1,4));
-        desProductos2=crearPanelesImagenes.CrearDescripcionProductos(arrayDescripcionProductos2);
 
         preciosProductos2=new JPanel();
         preciosProductos2.setLayout(new GridLayout(1,4));
-        preciosProductos2=crearPanelesImagenes.CrearPrecioProductos2(arrayPrecios2);
 
         comprar2=new JPanel();
         comprar2.setLayout(new GridLayout(1,4));
-        comprar2=crearPanelesImagenes.CrearCompras2(carritoNaranja,areaCompras);
+
+        panelProductos1=crearPanelesImagenes.CrearImagenes1(arrayImagenes1,arrayImagenesTexto1);
+        nombreProductos1=crearPanelesImagenes.CrearNombresProductos1(arrayNombreProductos1);
+        desProductos1=crearPanelesImagenes.CrearDescripcionProductos(arrayDescripcionProductos1);
+
+
+        panelProductos2=crearPanelesImagenes.CrearImagenes2(arrayImagenes2,arrayImagenesTexto2);
+        nombreProductos2=crearPanelesImagenes.CrearNombresProductos2(arrayNombreProductos2);
+        desProductos2=crearPanelesImagenes.CrearDescripcionProductos(arrayDescripcionProductos2);
+
+        if(id==1){
+            preciosProductos1=crearPanelesImagenes.CrearPrecioProductos1(arrayPrecios1,verde);
+            comprar1=crearPanelesImagenes.CrearCompras1(carritoVerde,areaCompras);
+            preciosProductos2=crearPanelesImagenes.CrearPrecioProductos2(arrayPrecios2,verde);
+            comprar2=crearPanelesImagenes.CrearCompras2(carritoVerde,areaCompras);
+        }
+
+        if(id==2){
+            preciosProductos1=crearPanelesImagenes.CrearPrecioProductos1(arrayPrecios1Club, naranja);
+            comprar1=crearPanelesImagenes.CrearCompras1(carritoNaranja,areaCompras);
+            preciosProductos2=crearPanelesImagenes.CrearPrecioProductos2(arrayPrecios2Club, naranja);
+            comprar2=crearPanelesImagenes.CrearCompras2(carritoNaranja,areaCompras);
+        }
+
+        if(id==3){
+            preciosProductos1=crearPanelesImagenes.CrearPrecioProductos1(arrayPrecios1Premium, dorado);
+            comprar1=crearPanelesImagenes.CrearCompras1(carritoDorado,areaCompras);
+            preciosProductos2=crearPanelesImagenes.CrearPrecioProductos2(arrayPrecios2Premium, dorado);
+            comprar2=crearPanelesImagenes.CrearCompras2(carritoDorado,areaCompras);
+        }
+
 
         logo=new LogoLeliaMerca(2);
 

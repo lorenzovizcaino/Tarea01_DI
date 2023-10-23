@@ -1,5 +1,7 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
@@ -10,10 +12,10 @@ public class LaminaPrimariaLeliaMerca extends JPanel {
 
     private LogoLeliaMerca logo;
     private JLabel labelNombreUsuario,labelMiCuenta, labelIniciaSesion, labelNuestrosServicios1,labelNuestrosServicios2;
-    private JTextField textFieldUsuario;
+    protected JTextField textFieldUsuario;
     private JRadioButton radio1, radio2, radio3;
     private ButtonGroup grupoRadio;
-    private JButton botonAceptar;
+    protected JButton botonAceptar;
 
     private GBCConstrains gbc=new GBCConstrains();
     private Font font17 =new Font("Lucida Sans",Font.BOLD,17);
@@ -66,6 +68,7 @@ public class LaminaPrimariaLeliaMerca extends JPanel {
         grupoRadio.add(radio2);
         grupoRadio.add(radio3);
         botonAceptar=new JButton("ACEPTAR");
+        botonAceptar.setEnabled(false);
         botonAceptar.setBackground(new Color(212,175,55));
         botonAceptar.setForeground(Color.WHITE);
         botonAceptar.setFont(font17);
@@ -87,9 +90,26 @@ public class LaminaPrimariaLeliaMerca extends JPanel {
 
 
         botonAceptar.addActionListener(e->{
-            if(radio1.isSelected()) new VentanSecundariaLeliaMerca(1);
-            if(radio2.isSelected()) new VentanSecundariaLeliaMerca(2);
-            if(radio3.isSelected()) new VentanSecundariaLeliaMerca(3);
+            if(radio1.isSelected()) new VentanSecundariaLeliaMerca(1,this);
+            if(radio2.isSelected()) new VentanSecundariaLeliaMerca(2, this);
+            if(radio3.isSelected()) new VentanSecundariaLeliaMerca(3, this);
+        });
+
+        textFieldUsuario.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                botonAceptar.setEnabled(true);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+
+            }
         });
 
 

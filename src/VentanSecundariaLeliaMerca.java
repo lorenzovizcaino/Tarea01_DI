@@ -7,10 +7,11 @@ import java.io.IOException;
 public class VentanSecundariaLeliaMerca extends JFrame {
     File file=new File("image"+File.separator+"logo LeliaMerca.png");
     Image imagen,imagenOriginal;
+    LaminaPrimariaLeliaMerca laminaPrimariaLeliaMerca;
 
-    public VentanSecundariaLeliaMerca(int id){
+    public VentanSecundariaLeliaMerca(int id, LaminaPrimariaLeliaMerca laminaPrimariaLeliaMerca){
 
-
+        this.laminaPrimariaLeliaMerca=laminaPrimariaLeliaMerca;
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setResizable(false);
 
@@ -27,7 +28,11 @@ public class VentanSecundariaLeliaMerca extends JFrame {
         laminaSecundariaLeliaMerca.cancelar.addActionListener(e->{
             int respuesta=JOptionPane.showConfirmDialog(this,"Si pulsa YES saldra y se eliminara su compra, ¿Seguro que quiere SALIR?","CANCELAR",JOptionPane.YES_NO_OPTION);
 
-            if (respuesta==JOptionPane.YES_OPTION) this.dispose();
+            if (respuesta==JOptionPane.YES_OPTION){
+                this.laminaPrimariaLeliaMerca.textFieldUsuario.setText("");
+                this.laminaPrimariaLeliaMerca.botonAceptar.setEnabled(false);
+                this.dispose();
+            }
         });
         add(laminaSecundariaLeliaMerca);
         setVisible(true);

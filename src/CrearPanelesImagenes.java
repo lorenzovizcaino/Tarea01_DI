@@ -140,7 +140,7 @@ public class CrearPanelesImagenes extends JPanel {
         return panel;
     }
 
-    public JPanel CrearPrecioProductos1(String[] arrayPrecios) {
+    public JPanel CrearPrecioProductos1(String[] arrayPrecios, Color color) {
         arrayPrecios1 =arrayPrecios;
         JPanel panel=new JPanel();
         panel.setLayout(new GridLayout(1,4));
@@ -148,12 +148,13 @@ public class CrearPanelesImagenes extends JPanel {
             nombres1[i]=new JLabel(arrayPrecios[i]+" €");
             nombres1[i].setHorizontalAlignment(JLabel.LEFT);
             nombres1[i].setFont(font17);
+            nombres1[i].setForeground(color);
             panel.add(nombres1[i]);
         }
         return panel;
     }
 
-    public JPanel CrearPrecioProductos2(String[] arrayPrecios) {
+    public JPanel CrearPrecioProductos2(String[] arrayPrecios, Color color) {
         arrayPrecios2 =arrayPrecios;
         JPanel panel=new JPanel();
         panel.setLayout(new GridLayout(1,4));
@@ -161,6 +162,7 @@ public class CrearPanelesImagenes extends JPanel {
             nombres1[i]=new JLabel(arrayPrecios[i]+" €");
             nombres1[i].setHorizontalAlignment(JLabel.LEFT);
             nombres1[i].setFont(font17);
+            nombres1[i].setForeground(color);
             panel.add(nombres1[i]);
         }
         return panel;
@@ -198,6 +200,7 @@ public class CrearPanelesImagenes extends JPanel {
             botonCarrito[i].addActionListener(e->{
                 total=0.0;
                 areaCompras.setText("");
+                fieldtotal.setText("    0.00€");
 
                 for(int k=0;k<4;k++){
                     if((int)spiner1[k].getValue()>0){
@@ -211,7 +214,6 @@ public class CrearPanelesImagenes extends JPanel {
                         fieldtotal.setText(valorFormateadoTotal+"€");
                         areaCompras.setText(areaCompras.getText()+"\n\t"+spiner1[k].getValue()+" x "+nombreProductos1[k]+valorFormateado+"€");
                     }
-
                 }
                 for(int k=0;k<4;k++){
                     if((int)spiner2[k].getValue()>0){
@@ -272,6 +274,7 @@ public class CrearPanelesImagenes extends JPanel {
             botonCarrito[i].addActionListener(e->{
                 total=0.0;
                 areaCompras.setText("");
+                fieldtotal.setText("    0.00€");
 
                 for(int k=0;k<4;k++){
                     if((int)spiner1[k].getValue()>0){
@@ -323,6 +326,7 @@ public class CrearPanelesImagenes extends JPanel {
         fieldtotal=new TextField(10);
         fieldtotal.setPreferredSize(new Dimension(70,40));
         fieldtotal.setFont(font19);
+        fieldtotal.setText("    0.00€");
         panel.add(etiquetaTotalCompra);
         panel.add(fieldtotal);
         return panel;
@@ -343,6 +347,7 @@ public class CrearPanelesImagenes extends JPanel {
         cancelar.setForeground(Color.WHITE);
         cancelar.setBorder(new LineBorder(new Color(73,134,52),2));
         comprar.addActionListener(e->{
+            if(valorFormateadoTotal==null) valorFormateadoTotal="0";
             JOptionPane.showMessageDialog(this,"El Valor total de su compra es: "+valorFormateadoTotal+" €","Finalizando Compra",JOptionPane.INFORMATION_MESSAGE);
         });
         panel.add(comprar);
