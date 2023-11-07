@@ -1,12 +1,7 @@
 import java.awt.*;
 
 public class GBCConstrains {
-
-
         private GridBagConstraints gbc=new GridBagConstraints();
-
-
-
         public GridBagConstraints Constrains(int gridx,int gridy,int gridwidth,int gridheight, double weightx, double weighty,int fill,int anchor, Insets insets){
             gbc.gridx=gridx;
             gbc.gridy=gridy;
@@ -19,8 +14,5 @@ public class GBCConstrains {
             gbc.insets=insets;
             return gbc;
         }
-
-
-
 
     }

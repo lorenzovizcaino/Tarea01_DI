@@ -7,7 +7,10 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.util.Locale;
-
+/*
+* Esta clase se encarga de generar y colocar todos los componentes graficos que componenen la vista de la pantalla
+* principal de la aplicacion.
+ */
 public class LaminaSecundariaLeliaMerca extends JPanel {
 
     private File cincoJotas = new File("image" + File.separator + "cincoJotas.png");
@@ -96,17 +99,11 @@ public class LaminaSecundariaLeliaMerca extends JPanel {
 
     private String[] arrayPrecios1Premium = new String[4];
     boolean bandera2 = CalcularPrecios(arrayPrecios1, arrayPrecios1Premium, 0.15);
-
-
     private String[] arrayPrecios2 = {"179.00", "199.00", "175.00", "92.50"};
-
     private String[] arrayPrecios2Club = new String[4];
     boolean bandera3 = CalcularPrecios(arrayPrecios2, arrayPrecios2Club, 0.10);
-
-
     private String[] arrayPrecios2Premium = new String[4];
     boolean bandera4 = CalcularPrecios(arrayPrecios2, arrayPrecios2Premium, 0.15);
-
 
     private boolean CalcularPrecios(String[] arrayInicio, String[] arrayFinal, double porcentaje) {
 
@@ -121,8 +118,7 @@ public class LaminaSecundariaLeliaMerca extends JPanel {
             precios[i] = precio - (precio * porcentaje);
             String numeroRedondeado = formato.format((precios[i]));
             arrayFinal[i] = numeroRedondeado;
-            System.out.println(numeroRedondeado);
-            System.out.println(arrayInicio[i]);
+
 
         }
         return true;
@@ -132,14 +128,8 @@ public class LaminaSecundariaLeliaMerca extends JPanel {
 
 
 
-
-
-
     public LaminaSecundariaLeliaMerca(int id) {
-
-
         setLayout(new GridBagLayout());
-        //setBackground(Color.WHITE);
         panelProductos1 = new JPanel();
         panelProductos1.setLayout(new GridLayout(1, 4));
 
@@ -172,12 +162,12 @@ public class LaminaSecundariaLeliaMerca extends JPanel {
         comprar2.setLayout(new GridLayout(1, 4));
 
         panelProductos1 = crearPanelesImagenes.CrearImagenes1(arrayImagenes1, arrayImagenesTexto1);
-        nombreProductos1 = crearPanelesImagenes.CrearNombresProductos1(arrayNombreProductos1);
+        nombreProductos1 = crearPanelesImagenes.CrearNombresProductos1(arrayNombreProductos1,id);
         desProductos1 = crearPanelesImagenes.CrearDescripcionProductos(arrayDescripcionProductos1);
 
 
         panelProductos2 = crearPanelesImagenes.CrearImagenes2(arrayImagenes2, arrayImagenesTexto2);
-        nombreProductos2 = crearPanelesImagenes.CrearNombresProductos2(arrayNombreProductos2);
+        nombreProductos2 = crearPanelesImagenes.CrearNombresProductos2(arrayNombreProductos2,id);
         desProductos2 = crearPanelesImagenes.CrearDescripcionProductos(arrayDescripcionProductos2);
 
         if (id == 1) {
@@ -185,6 +175,7 @@ public class LaminaSecundariaLeliaMerca extends JPanel {
             comprar1 = crearPanelesImagenes.CrearCompras1(carritoVerde, areaCompras);
             preciosProductos2 = crearPanelesImagenes.CrearPrecioProductos2(arrayPrecios2, verde);
             comprar2 = crearPanelesImagenes.CrearCompras2(carritoVerde, areaCompras);
+
         }
 
         if (id == 2) {
@@ -201,19 +192,14 @@ public class LaminaSecundariaLeliaMerca extends JPanel {
             comprar2 = crearPanelesImagenes.CrearCompras2(carritoDorado, areaCompras);
         }
 
-
-        logo = new LogoLeliaMerca(2);
-
+        logo = new LogoLeliaMerca(id);
         areaCompras.setFont(font17);
-
         totalCompra = new JPanel();
         totalCompra.setLayout(new FlowLayout());
         totalCompra = crearPanelesImagenes.total();
-
         botonesFinales = new JPanel();
         botonesFinales.setLayout(new GridLayout(1, 2, 45, 0));
         botonesFinales = crearPanelesImagenes.botonesFinales();
-
 
         add(panelProductos1, gbc.Constrains(0, 0, 1, 1, 1.0, 0.0, GridBagConstraints.HORIZONTAL, GridBagConstraints.CENTER, new Insets(5, 65, 5, 5)));
         add(nombreProductos1, gbc.Constrains(0, 1, 1, 1, 1.0, 0.0, GridBagConstraints.HORIZONTAL, GridBagConstraints.CENTER, new Insets(5, 65, 5, 5)));
@@ -221,14 +207,12 @@ public class LaminaSecundariaLeliaMerca extends JPanel {
         add(preciosProductos1, gbc.Constrains(0, 3, 1, 1, 1.0, 0.0, GridBagConstraints.HORIZONTAL, GridBagConstraints.CENTER, new Insets(0, 65, 5, 5)));
         add(comprar1, gbc.Constrains(0, 4, 1, 1, 0.0, 0.0, GridBagConstraints.HORIZONTAL, GridBagConstraints.CENTER, new Insets(0, 65, 5, 5)));
 
-
         add(panelProductos2, gbc.Constrains(0, 5, 1, 1, 1.0, 0.0, GridBagConstraints.HORIZONTAL, GridBagConstraints.CENTER, new Insets(5, 65, 5, 5)));
 
         add(nombreProductos2, gbc.Constrains(0, 6, 1, 1, 1.0, 0.0, GridBagConstraints.HORIZONTAL, GridBagConstraints.CENTER, new Insets(5, 65, 5, 5)));
         add(desProductos2, gbc.Constrains(0, 7, 1, 1, 1.0, 0.0, GridBagConstraints.HORIZONTAL, GridBagConstraints.CENTER, new Insets(5, 65, 5, 5)));
         add(preciosProductos2, gbc.Constrains(0, 8, 1, 1, 1.0, 0.0, GridBagConstraints.HORIZONTAL, GridBagConstraints.CENTER, new Insets(0, 65, 5, 5)));
         add(comprar2, gbc.Constrains(0, 9, 1, 1, 0.0, 0.0, GridBagConstraints.HORIZONTAL, GridBagConstraints.CENTER, new Insets(0, 65, 5, 5)));
-
 
         add(logo, gbc.Constrains(1, 0, 1, 1, 1.0, 0.0, GridBagConstraints.BOTH, GridBagConstraints.CENTER, new Insets(65, 80, 5, 5)));
         add(areaCompras, gbc.Constrains(1, 1, 1, 5, 0.0, 0.0, GridBagConstraints.BOTH, GridBagConstraints.CENTER, new Insets(5, 45, 5, 140)));
@@ -240,7 +224,10 @@ public class LaminaSecundariaLeliaMerca extends JPanel {
 
     }
 
-
+/*
+* Este metodo se encarga de transformar las diferentes imagenes para que sean proporcionales independientemente al tamaño del
+* monitor en el que se ejecute la aplicacion
+ */
     private ImageIcon TransformarImagen(File imagen) {
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension screenSize = toolkit.getScreenSize();
